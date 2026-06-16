@@ -25,8 +25,29 @@ Monitoreo automático semanal de pricing, blog y actividad de marketing de compe
 ### Resumen Semanal de Newsletters de Producto
 Agregación automática de los newsletters de producto más relevantes (Lenny's, Shreyas, etc.) → Claude extrae los artículos más importantes de la semana → resumen consolidado enviado cada lunes. Reemplaza revisar decenas de emails individualmente por un solo digest con lo que realmente vale leer.
 
-### Alertas de Ofertas de Producto en Chile
-Revisión dos veces por semana de portales de empleo (LinkedIn, GetOnBrd, entre otros) buscando nuevas posiciones de producto → Claude analiza cada oferta contra mi perfil y experiencia → alerta solo con las posiciones donde soy candidato relevante o que pueden ser de interés estratégico. Elimina el ruido de buscar manualmente y filtra por fit real, no solo por palabras clave.
+### PM Job Tracker — LinkedIn Chile
+**17 nodos · Corre todos los lunes a las 9am**
+
+Flow completo de búsqueda, filtrado y enriquecimiento de ofertas de producto en Chile.
+
+```
+Schedule (lunes 9am)
+  → Apify [linkedin-jobs-scraper] — busca "Product Manager" en Santiago, última semana
+  → Limit — top 15 resultados
+  → Aggregate — agrupa en un solo item
+  → AI Agent (GPT-4o) — lee mi perfil y selecciona los 5 roles más relevantes,
+                         con campo "whyRelevant" por cada uno
+  → Split Out — separa los 5 en items individuales
+  → Loop (batch 1) — por cada oferta:
+      ├── Proxycurl — busca contactos HR / Recruiter / Talent en la empresa
+      └── Proxycurl — busca PMs, Heads of Product, VPs, CPOs (hasta 2)
+  → Aggregate — consolida las 5 tarjetas enriquecidas
+  → AI Agent (GPT-4o) — genera email HTML con tarjetas, contactos,
+                         links de LinkedIn y mensaje de outreach sugerido por empresa
+  → Gmail — envía a jp.aylwin.work@gmail.com
+```
+
+**Stack:** N8N · Apify · Proxycurl · GPT-4o · Gmail
 
 ---
 
