@@ -22,6 +22,12 @@ Recepción de facturas PDF por email → extracción de datos con Claude (RUT, m
 ### Benchmark Semanal de Competencia
 Monitoreo automático semanal de pricing, blog y actividad de marketing de competidores → síntesis con LLM → resumen ejecutivo enviado al equipo de producto y marketing cada lunes.
 
+### Resumen Semanal de Newsletters de Producto
+Agregación automática de los newsletters de producto más relevantes (Lenny's, Shreyas, etc.) → Claude extrae los artículos más importantes de la semana → resumen consolidado enviado cada lunes. Reemplaza revisar decenas de emails individualmente por un solo digest con lo que realmente vale leer.
+
+### Alertas de Ofertas de Producto en Chile
+Revisión dos veces por semana de portales de empleo (LinkedIn, GetOnBrd, entre otros) buscando nuevas posiciones de producto → Claude analiza cada oferta contra mi perfil y experiencia → alerta solo con las posiciones donde soy candidato relevante o que pueden ser de interés estratégico. Elimina el ruido de buscar manualmente y filtra por fit real, no solo por palabras clave.
+
 ---
 
 ## Claude Code + N8N
